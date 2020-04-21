@@ -32,7 +32,6 @@ export default function App() {
         console.error(e);
       })
       .then(state => {
-        console.log('then');
         if (state !== undefined) {
           setInitialState(state);
         }
@@ -44,8 +43,6 @@ export default function App() {
   if (!isReady) {
     return null;
   }
-
-  console.log({initialState});
 
   return (
     <NavigationContainer ref={navigationRef} initialState={initialState}>
@@ -59,13 +56,29 @@ export default function App() {
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
-                <Button
-                  title="LINK"
-                  onPress={() => {
-                    console.log('PRESS');
-                    Linking.openURL('testapp://Settings');
-                  }}
-                />
+                <Text>Home Page</Text>
+                <View
+                  style={{
+                    marginVertical: 8,
+                  }}>
+                  <Button
+                    title="LINK with testapp://"
+                    onPress={() => {
+                      Linking.openURL('testapp://Settings');
+                    }}
+                  />
+                </View>
+                <View
+                  style={{
+                    marginVertical: 8,
+                  }}>
+                  <Button
+                    title="LINK with https://testapp.com"
+                    onPress={() => {
+                      Linking.openURL('https://testapp.com/Settings');
+                    }}
+                  />
+                </View>
               </View>
             );
           }}
@@ -78,9 +91,10 @@ export default function App() {
                   flex: 1,
                   alignItems: 'center',
                   justifyContent: 'center',
+                  marginVertical: 8,
                 }}>
-                <Text>Hello {props.route.params.userName}</Text>
-                <Button title="Go to Home" onPress={() => navigate('Home')} />
+                <Text>Settings Page</Text>
+                <Button title="Go Back" onPress={() => navigate('Home')} />
               </View>
             );
           }}
